@@ -11,7 +11,7 @@ Bundler.require
 # https://github.com/teamcapybara/capybara#selenium
 
 Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'https://the-internet.herokuapp.com'
+Capybara.app_host = 'http://automationpractice.com/'
 Capybara.default_max_wait_time = 5
 
 # Run using:
