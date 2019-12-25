@@ -19,7 +19,7 @@ feature 'Sign up' do
     expect(page).to have_content "YOUR PERSONAL INFORMATION"
   end
 
-  it "can't sign up with no email address" do
+  it "can't sign up with no email address is given" do
     click_button "Create an account"
     expect(page).to have_content "Invalid email address"
     end
