@@ -21,7 +21,7 @@ feature 'Sign up' do
     end
     
     #TODO
-    xit "can fill in form succefully" do
+    xit "can fill in form successfully" do
     end
 
 
