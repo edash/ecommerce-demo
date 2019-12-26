@@ -6,19 +6,19 @@ feature 'Log in' do
   end
 
   it 'authentication page loads' do
-    expect(page).to have_content 'Authentication'
+    expect(page).to have_content 'Authentication'  
   end
 
-  # TODO add real user - have to hardcode user in for now
-  xit 'can log in with valid name and password' do
+  # TODO use faker? have to hardcode user in for now
+  it 'can log in with valid name and password' do
     # "email" is ambiguous so find it within the login form
     within('#login_form') do
-      fill_in 'email', with: "email@email.com"
+      fill_in 'email', with: "edashfield+test@gmail.com"
       fill_in 'passwd', with: "password"
       click_button "Sign in"
     end
-    #assert user is logged in
-    
+    expect(page).to have_content "Sign out"
+    expect(page).to have_css(".logout")
   end
 
   # TODO
@@ -27,6 +27,12 @@ feature 'Log in' do
    it "can't log in with unregistered email address"
    it "can't log in with wrong password"
   end
-
+  
+    # TODO 
+    context "when user is logged out" do
+      xit "can see log in option" do
+        # .login "Sign in"
+      end
+    end
 
 end

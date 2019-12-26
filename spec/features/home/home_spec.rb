@@ -12,12 +12,18 @@ feature "Home page" do
       end
     end
 
+    # TODO
       context "When user is logged out" do
-        it "can see log in option"
+        xit "can see log in option" do
+          # .login "Sign in"
+        end
       end
 
+    # TODO
     context "When user is logged in" do
-      it "can see log out option" do
+      xit "can see log out option" do
+        # .logout "Sign out"
+
       end
     end
   end

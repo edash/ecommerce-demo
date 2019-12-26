@@ -1,2 +1,2 @@
-This is a demo project showing the use of Capybara and RSpec to test a third-party ecommerce website.
+This is a demo project showing the use of Capybara and RSpec to test a third-party ecommerce website at http://automationpractice.com/.
 
