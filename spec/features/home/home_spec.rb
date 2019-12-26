@@ -7,24 +7,11 @@ feature "Home page" do
     end
 
     context "When user is either logged in or out" do
+      # TODO add more content ? 
       it "can see home contents" do
         expect(page).to have_content "BEST SELLERS"
       end
     end
 
-    # TODO
-      context "When user is logged out" do
-        xit "can see log in option" do
-          # .login "Sign in"
-        end
-      end
-
-    # TODO
-    context "When user is logged in" do
-      xit "can see log out option" do
-        # .logout "Sign out"
-
-      end
-    end
   end
 end
