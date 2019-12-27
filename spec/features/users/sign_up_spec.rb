@@ -44,6 +44,7 @@ feature "Sign up" do
       click_button "Register"
       expect(page).to have_current_path "http://automationpractice.com/index.php?controller=my-account"
       expect(page).to have_content "Sign out"
+      expect(page).to have_content "#{user.first_name} #{user.last_name}"
     end
   end
 
