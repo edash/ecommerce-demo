@@ -9,12 +9,11 @@ feature 'Log in' do
     expect(page).to have_content 'Authentication'  
   end
 
-  # TODO use faker? have to hardcode user in for now
   it 'can log in with valid name and password' do
     # "email" is ambiguous so find it within the login form
     within('#login_form') do
-      fill_in 'email', with: "edashfield+test@gmail.com"
-      fill_in 'passwd', with: "password"
+      fill_in 'email', with: "lupe_howell@jacobsonnolan.info"
+      fill_in 'passwd', with: "password1"
       click_button "Sign in"
     end
     expect(page).to have_content "Sign out"
@@ -22,6 +21,7 @@ feature 'Log in' do
   end
 
   context "can't log in with missing or invalid credentials" do
+
     it "can't log in with no email address" do
       click_button "Sign in"
       expect(page).to have_content "An email address required."
@@ -38,7 +38,7 @@ feature 'Log in' do
 
     it "can't log in with correct email but no password" do
         within('#login_form') do
-          fill_in 'email', with: "edashfield+test@gmail.com"
+          fill_in 'email', with: "lupe_howell@jacobsonnolan.info"
           click_button "Sign in"
         end
         expect(page).to have_content "Password is required."
@@ -46,7 +46,7 @@ feature 'Log in' do
 
     it "can't log in with wrong password" do
       within('#login_form') do
-        fill_in 'email', with: "edashfield+test@gmail.com"
+        fill_in 'email', with: "lupe_howell@jacobsonnolan.info"
         fill_in 'passwd', with: "wrongpassword"
         click_button "Sign in"
       end
