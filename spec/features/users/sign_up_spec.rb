@@ -14,8 +14,8 @@ feature "Sign up" do
     expect(page).to have_content "Authentication"
   end
 
-  #TODO - better way of describing this?
-  context "can check email address isn't taken" do
+  describe "successful sign up" do
+    #TODO - better way of describing this?
     it "can do first step of sign up with email address" do
       fill_in "email_create", with: user.email
       click_button "Create an account"
@@ -23,12 +23,10 @@ feature "Sign up" do
       # have to use full path rather than relative because by default '#account-creation' is ignored
       expect(page).to have_current_path "http://automationpractice.com/index.php?controller=authentication#account-creation"
     end
-  end
 
-  # Have to test more than one view as /index.php?controller=authentication#account-creation
-  # takes you to authentication "frontpage" view
-  context "can sign up" do
-    it "can fill in form with required fields only" do
+    # Have to test more than one view as /index.php?controller=authentication#account-creation
+    # takes you to authentication "frontpage" view
+    it "can register with required details only" do
       fill_in "email_create", with: user.email
       click_button "Create an account"
       #goes to account creation page
@@ -49,7 +47,8 @@ feature "Sign up" do
     end
   end
 
-  context "can't sign up" do
+  #Test sad paths
+  describe "unsuccessful sign up" do
     it "can't sign up when no email address is given" do
       click_button "Create an account"
       expect(page).to have_content "Invalid email address"
@@ -59,6 +58,21 @@ feature "Sign up" do
       fill_in "email_create", with: "jane@gmail.com"
       click_button "Create an account"
       expect(page).to have_content "An account using this email address has already been registered. Please enter a valid password or request a new one."
+    end
+
+    it "can't sign up when required details are not entered" do
+      fill_in "email_create", with: user.email
+      click_button "Create an account"
+      click_button "Register"
+      expect(page).to have_content "There are 8 errors"
+      expect(page).to have_content "You must register at least one phone number."
+      expect(page).to have_content "lastname is required."
+      expect(page).to have_content "firstname is required."
+      expect(page).to have_content "passwd is required."
+      expect(page).to have_content "address1 is required."
+      expect(page).to have_content "city is required."
+      expect(page).to have_content "The Zip/Postal code you've entered is invalid. It must follow this format: 00000"
+      expect(page).to have_content "This country requires you to choose a State."
     end
   end
 end
