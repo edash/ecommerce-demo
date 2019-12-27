@@ -43,7 +43,6 @@ feature "Sign up" do
       find("#id_state", visible: :all).select("#{user.state}")
       fill_in "postcode", with: user.postcode
       fill_in "phone_mobile", with: user.phone
-      binding.pry
       click_button "Register"
       expect(page).to have_current_path "http://automationpractice.com/index.php?controller=my-account"
       expect(page).to have_content "Sign out"
