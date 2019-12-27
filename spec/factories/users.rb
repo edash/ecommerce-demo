@@ -8,8 +8,9 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     street_address { Faker::Address.street_address }
     city { Faker::Address.city }
-    state { "California" }
-    postcode { Faker::Address.postcode }
+    state { Faker::Address.state }
+    # Faker's zip code method returns an integer of varying length so it's not suitable
+    postcode { Faker::Number.number(digits: 5) }
     country { "United States" }
     phone { Faker::PhoneNumber.cell_phone }
     password { "password1" }
