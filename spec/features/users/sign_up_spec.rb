@@ -3,7 +3,7 @@ require "./spec/factories/users.rb"
 require "./app/user.rb"
 
 feature "Sign up" do
-  #use FactoryBot to build a user with personal details
+  # use FactoryBot to build a user with personal details
   let(:user) { FactoryBot.build(:user) }
 
   before do
@@ -15,7 +15,7 @@ feature "Sign up" do
   end
 
   describe "successful sign up" do
-    #TODO - better way of describing this?
+    # TODO: - better way of describing this?
     it "can do first step of sign up with email address" do
       fill_in "email_create", with: user.email
       click_button "Create an account"
@@ -29,7 +29,7 @@ feature "Sign up" do
     it "can register with required details only" do
       fill_in "email_create", with: user.email
       click_button "Create an account"
-      #goes to account creation page
+      # goes to account creation page
       fill_in "customer_firstname", with: user.first_name
       fill_in "customer_lastname", with: user.last_name
       fill_in "passwd", with: user.password
@@ -38,7 +38,7 @@ feature "Sign up" do
       fill_in "address1", with: user.street_address
       fill_in "city", with: user.city
       # Use visible: :all to find hidden select box
-      find("#id_state", visible: :all).select("#{user.state}")
+      find("#id_state", visible: :all).select(user.state.to_s)
       fill_in "postcode", with: user.postcode
       fill_in "phone_mobile", with: user.phone
       click_button "Register"
@@ -48,7 +48,7 @@ feature "Sign up" do
     end
   end
 
-  #Test sad paths
+  # Test sad paths
   describe "unsuccessful sign up" do
     it "can't sign up when no email address is given" do
       click_button "Create an account"

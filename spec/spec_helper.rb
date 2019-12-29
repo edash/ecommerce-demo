@@ -1,6 +1,6 @@
-require 'bundler'
-require 'capybara/dsl'
-require 'capybara/rspec'
+require "bundler"
+require "capybara/dsl"
+require "capybara/rspec"
 
 Bundler.setup(:default)
 Bundler.require
@@ -11,7 +11,7 @@ Bundler.require
 # https://github.com/teamcapybara/capybara#selenium
 
 Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'http://automationpractice.com/'
+Capybara.app_host = "http://automationpractice.com/"
 Capybara.default_max_wait_time = 5
 
 # Run using:
