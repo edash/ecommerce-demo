@@ -7,7 +7,7 @@ feature "Home page" do
     end
 
     context "When user is either logged in or out" do
-        it "can see home contents" do
+      it "can see home contents" do
         expect(page).to have_title "My Store"
         expect(page).to have_content "POPULAR"
         expect(page).to have_content "BEST SELLERS"
