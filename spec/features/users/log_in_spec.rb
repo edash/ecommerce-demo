@@ -2,57 +2,12 @@ require "spec_helper"
 
 feature "Log in" do
   before do
+    # go to log in page
     visit "/index.php?controller=authentication"
   end
 
-  it "authentication page loads" do
+  it "log in page loads" do
     expect(page).to have_content "Authentication"
-  end
-
-  it "can log in with valid name and password" do
-    # Use pre-existing user
-    # "email" is ambiguous so find it within the login form
-    within("#login_form") do
-      fill_in "email", with: "lupe_howell@jacobsonnolan.info"
-      fill_in "passwd", with: "password1"
-      click_button "Sign in"
-    end
-    expect(page).to have_content "Sign out"
-    expect(page).to have_css(".logout")
-    expect(page).to have_content("Kelsie Bogan")
-  end
-
-  context "can't log in with missing or invalid credentials" do
-    it "can't log in with no email address" do
-      click_button "Sign in"
-      expect(page).to have_content "An email address required."
-    end
-
-    it "can't log in with unregistered email address" do
-      within("#login_form") do
-        fill_in "email", with: "notregistered@foo.com"
-        fill_in "passwd", with: "password"
-        click_button "Sign in"
-      end
-      expect(page).to have_content "Authentication failed."
-    end
-
-    it "can't log in with correct email but no password" do
-      within("#login_form") do
-        fill_in "email", with: "lupe_howell@jacobsonnolan.info"
-        click_button "Sign in"
-      end
-      expect(page).to have_content "Password is required."
-    end
-
-    it "can't log in with wrong password" do
-      within("#login_form") do
-        fill_in "email", with: "lupe_howell@jacobsonnolan.info"
-        fill_in "passwd", with: "wrongpassword"
-        click_button "Sign in"
-      end
-      expect(page).to have_content "Authentication failed."
-    end
   end
 
   context "when user is logged out" do
@@ -61,4 +16,45 @@ feature "Log in" do
       expect(page).to have_css ".login"
     end
   end
+
+  it "can log in with valid name and password" do
+    # Use pre-existing user and custom method defined below
+    login("lupe_howell@jacobsonnolan.info", "password1")
+    expect(page).to have_content "Sign out"
+    expect(page).to have_css(".logout")
+    expect(page).to have_content("Kelsie Bogan")
+  end
+
+  context "can't log in with missing or invalid credentials" do
+    it "can't log in without enetering an email address" do
+      click_button "Sign in"
+      expect(page).to have_content "An email address required."
+    end
+
+    it "can't log in with unregistered email address" do
+      login("notregistered@foo.com", "password")
+      expect(page).to have_content "Authentication failed."
+    end
+
+    it "can't log in with correct email but no password" do
+      login("lupe_howell@jacobsonnolan.info", "")
+      expect(page).to have_content "Password is required."
+    end
+
+    it "can't log in with wrong password" do
+      login("lupe_howell@jacobsonnolan.info", "wrongpassword")
+      expect(page).to have_content "Authentication failed."
+    end
+  end
+end
+
+#helper method to log in
+def login(email, password)
+  # Use css to find correct email address field input
+  # because there are two email address fields on the page
+  # and 'within' block doesn't work here
+  email_field = find(:css, "input[id$='email']")
+  email_field.fill_in with: email
+  fill_in "passwd", with: password
+  click_button "Sign in"
 end
