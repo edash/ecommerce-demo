@@ -48,7 +48,7 @@ feature "Log in" do
   end
 end
 
-#helper method to log in
+# helper method to log in
 def login(email, password)
   # Use css to find correct email address field input
   # because there are two email address fields on the page
