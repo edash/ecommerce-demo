@@ -38,5 +38,6 @@ feature "Purchase item" do
     # confirm order
     click_button "I confirm my order"
     expect(page).to have_content "Your order on My Store is complete."
+    binding.pry
   end
 end

@@ -13,11 +13,14 @@ Bundler.require
 Capybara.default_driver = :selenium_chrome
 Capybara.app_host = "http://automationpractice.com/"
 Capybara.default_max_wait_time = 5
+# Disable Capybara's rack server as we are testing an external site
+Capybara.run_server = false
 
 # Run using:
 # bundle exec rspec spec/features/login.rb --format documentation
 # ... Or...
 
 RSpec.configure do |config|
+  # use verbose test results output
   config.formatter = :documentation
 end
