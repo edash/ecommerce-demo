@@ -1,6 +1,7 @@
 require "bundler"
 require "capybara/dsl"
 require "capybara/rspec"
+require "./spec/support/login_helper"
 
 Bundler.setup(:default)
 Bundler.require
@@ -23,4 +24,6 @@ Capybara.run_server = false
 RSpec.configure do |config|
   # use verbose test results output
   config.formatter = :documentation
+  # use helper method
+  config.include LoginHelper
 end

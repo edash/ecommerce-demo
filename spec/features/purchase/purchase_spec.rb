@@ -11,12 +11,9 @@ feature "Purchase item" do
   # is not best practice but not having access to the backend
   # means I have to do it solely via the UI
 
-  it "purchase item when user is logged in" do
+  it "can purchase item when user is logged in" do
     # log in
-    email_field = find(:css, "input[id$='email']")
-    email_field.fill_in with: "lupe_howell@jacobsonnolan.info"
-    fill_in "passwd", with: "password1"
-    click_button "Sign in"
+    login("lupe_howell@jacobsonnolan.info", "password1")
     # put in cart - skip to item 1 page for now
     # TODO - add item from home page
     visit "/index.php?id_product=1&controller=product"
@@ -38,6 +35,5 @@ feature "Purchase item" do
     # confirm order
     click_button "I confirm my order"
     expect(page).to have_content "Your order on My Store is complete."
-    binding.pry
   end
 end
