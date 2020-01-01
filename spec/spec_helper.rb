@@ -24,6 +24,6 @@ Capybara.run_server = false
 RSpec.configure do |config|
   # use verbose test results output
   config.formatter = :documentation
-  #use helper method
+  # use helper method
   config.include LoginHelper
 end

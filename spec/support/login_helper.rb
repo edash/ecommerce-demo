@@ -1,7 +1,6 @@
 require "spec_helper"
 
 module LoginHelper
-
   # helper method to log in
   def login(email, password)
     # Use css to find correct email address field input
