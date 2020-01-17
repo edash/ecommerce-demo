@@ -13,10 +13,13 @@ feature "Add item to cart" do
     end
   end
 
-  it "can add item and go to checkout" do
+  it "can add item and see it on cart summary page" do
     click_button "Add to cart"
     # Element is styled to look a button, but is actually a link
     click_link "Proceed to checkout"
     expect(page).to have_content "SHOPPING-CART SUMMARY"
+    # check in summary table for the specfic item
+    expect(page).to have_css("#cart_summary > tbody > tr.first_item > td.cart_description > p.product-name",
+                             text: "Faded Short Sleeve T-shirts")
   end
 end
