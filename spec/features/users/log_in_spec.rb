@@ -29,21 +29,25 @@ feature "Log in" do
   context "can't log in with missing or invalid credentials" do
     it "can't log in without entering an email address" do
       click_button "Sign in"
+
       expect(page).to have_content "An email address required."
     end
 
     it "can't log in with unregistered email address" do
       login("notregistered@example.com", "password")
+
       expect(page).to have_content "Authentication failed."
     end
 
     it "can't log in with correct email but no password" do
       login("user@example.com", "")
+
       expect(page).to have_content "Password is required."
     end
 
     it "can't log in with wrong password" do
       login("user@example.com", "wrongpassword")
+
       expect(page).to have_content "Authentication failed."
     end
   end
