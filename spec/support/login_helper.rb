@@ -13,4 +13,8 @@ module LoginHelper
     fill_in "passwd", with: password
     click_button "Sign in"
   end
+
+  def login_default_user
+    login("user@example.com", "password")
+  end
 end

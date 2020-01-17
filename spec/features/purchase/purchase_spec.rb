@@ -3,18 +3,17 @@ require "spec_helper.rb"
 feature "Purchase item" do
   context "User is logged in" do
     before do
-      login("lupe_howell@jacobsonnolan.info", "password1")    #TODO make default login
-      #TODO use example.com
+      login_default_user
     end
 
     # NB Having such a long example across multiple pages
     # is not best practice but not having access to the backend
     # means I have to do it solely via the UI
 
-    # The user has to click on "Proceed to checkout" on each page in the purchase flow
-    # to progress.
+    # The user has to click on "Proceed to checkout" on each page
+    # in the purchase flow to progress.
 
-    it "purchase item by bank wire" do
+    it "can purchase item by bank wire" do
       # skip to item 1 page for now
       # TODO - add item from home page
       visit "/index.php?id_product=1&controller=product"
@@ -51,6 +50,9 @@ feature "Purchase item" do
     # TODO look at resizing - loses columns at mobile width!!
   end
 
+  #TODO
   context "Guest user" do
+    xit "can purchase item by bank wire" do
+    end
   end
 end
