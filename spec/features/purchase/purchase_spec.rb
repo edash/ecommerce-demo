@@ -1,56 +1,56 @@
 require "spec_helper.rb"
 
 feature "Purchase item" do
+  context "User is logged in" do
+    before do
+      login("lupe_howell@jacobsonnolan.info", "password1")    #TODO make default login
+      #TODO use example.com
+    end
 
-  #TODO context - user already logged in -> move login to before block
+    # NB Having such a long example across multiple pages
+    # is not best practice but not having access to the backend
+    # means I have to do it solely via the UI
 
-  before do
-    # go to log in page
-    visit "/index.php?controller=authentication" #TODO - remove this line as in login helper
-  end
-  # log in
+    # The user has to click on "Proceed to checkout" on each page in the purchase flow
+    # to progress.
 
-  # TODO - more whitespace
-  # TODO- look at click_on
+    it "purchase item by bank wire" do
+      # skip to item 1 page for now
+      # TODO - add item from home page
+      visit "/index.php?id_product=1&controller=product"
+      click_on "Add to cart"
 
-  # NB Having such a long example across multiple pages
-  # is not best practice but not having access to the backend
-  # means I have to do it solely via the UI
+      # go to cart summary page
+      click_on "Proceed to checkout"
 
-  it "can purchase item when user is logged in" do
-    # log in
+      # go to address page
+      click_on "Proceed to checkout"
 
-    #TODO use example.com
+      # go to shipping
+      click_on "Proceed to checkout"
 
-    login("lupe_howell@jacobsonnolan.info", "password1")
-    # put in cart - skip to item 1 page for now
-    # TODO - add item from home page
-    visit "/index.php?id_product=1&controller=product"
-    click_button "Add to cart"
-    # go to cart summary page from item page
-    # element is styled to look a button, but is actually a link
-    click_link "Proceed to checkout"
-    # go to address page from cart summary page
-    click_link "Proceed to checkout"
-    # go to shipping from address page
-    # this element is a button
-    click_button "Proceed to checkout"
-    # agree to terms of service - the checkbox with an id of "cgv" is hidden
-    check("cgv", visible: :all)
-    # go to payment page from shipping page
-    click_button "Proceed to checkout"
-    # select pagement option and go to order summary page
-    click_link "Pay by bank wire"
-    # confirm order
-    click_button "I confirm my order"
-    expect(page).to have_content "Your order on My Store is complete."
+      # agree to terms of service using checkbox with an id of "cgv"
+      check("cgv", visible: :all)
 
-    # TODO expect assertion to check that correct item is in cart (can check amount is correct)
+      # go to payment page from shipping page
+      click_on "Proceed to checkout"
 
-    # TODO go to order page and check item is in order history as pending order
-    # use within #order-list
-    # first class row (first_item)
+      click_on "Pay by bank wire"
+      click_on "I confirm my order"
 
+      expect(page).to have_content "Your order on My Store is complete."
+
+      # TODO expect assertion to check that correct item is in cart
+      # (can check amount is correct)
+
+      # TODO go to order page and check item is in order history as pending order
+      # use within #order-list
+      # first class row (first_item)
+
+    end
     # TODO look at resizing - loses columns at mobile width!!
+  end
+
+  context "Guest user" do
   end
 end
