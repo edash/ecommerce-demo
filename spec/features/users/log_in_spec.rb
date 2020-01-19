@@ -23,12 +23,12 @@ feature "Log in" do
 
     expect(page).to have_content "Sign out"
     expect(page).to have_css(".logout")
-    expect(page).to have_content("Tui Baker")
+    expect(page).to have_content("Test User")
   end
 
   context "can't log in with missing or invalid credentials" do
     it "can't log in without entering an email address" do
-      click_button "Sign in"
+      click_on "Sign in"
 
       expect(page).to have_content "An email address required."
     end
