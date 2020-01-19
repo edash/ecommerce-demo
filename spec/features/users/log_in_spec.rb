@@ -19,7 +19,7 @@ feature "Log in" do
 
   it "can log in with valid name and password" do
     # Use pre-existing user and custom method defined in login_helper.rb
-    login_default_user
+    login("user@example.com", "password")
 
     expect(page).to have_content "Sign out"
     expect(page).to have_css(".logout")
@@ -27,25 +27,27 @@ feature "Log in" do
   end
 
   context "can't log in with missing or invalid credentials" do
-    it "can't log in without entering an email address" do
-      click_on "Sign in"
+    it "without entering an email address" do
+      within "#login_form" do
+        click_on "Sign in"
+      end
 
       expect(page).to have_content "An email address required."
     end
 
-    it "can't log in with unregistered email address" do
+    it "with unregistered email address" do
       login("notregistered@example.com", "password")
 
       expect(page).to have_content "Authentication failed."
     end
 
-    it "can't log in with correct email but no password" do
+    it "with correct email but no password" do
       login("user@example.com", "")
 
       expect(page).to have_content "Password is required."
     end
 
-    it "can't log in with wrong password" do
+    it "with wrong password" do
       login("user@example.com", "wrongpassword")
 
       expect(page).to have_content "Authentication failed."

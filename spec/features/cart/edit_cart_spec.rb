@@ -2,16 +2,14 @@ require "spec_helper"
 
 feature "Edit cart" do
   before do
-    # log in with valid user
-    login("lupe_howell@jacobsonnolan.info", "password1")
-    # add "item 1" to cart
+    login_default_user
     visit "/index.php?id_product=1&controller=product"
-    click_button "Add to cart"
+    click_on "Add to cart"
     # go to cart summary page
-    click_link "Proceed to checkout"
+    click_on "Proceed to checkout"
   end
 
-  context "edit cart from cart summary page" do
+  context "on cart summary page" do
     xit "can increase item quantity" do
       # Inside the table there's a link to increase the first item's quantity
       # increase_link = find("#cart_summary > tbody > tr.first_item > td.cart_quantity > div.cart_quantity_button > a[href]",
