@@ -6,15 +6,18 @@ feature "Add item to cart" do
     visit "/index.php?id_product=1&controller=product"
   end
 
-  # TODO: do I need context block?
-  context "add item from item page" do
+  context "from item page" do
     it "with default quantity and size" do
       click_on "Add to cart"
 
       expect(page).to have_content "Product successfully added to your shopping cart"
+      # Look within cart layer
+      within "#layer_cart_product_title" do
+        expect(page).to have_content "Faded Short Sleeve T-shirts"
+      end
     end
 
-    it "can see item on cart summary page" do
+    it "view item on cart summary page" do
       click_on "Add to cart"
       click_on "Proceed to checkout"
 
