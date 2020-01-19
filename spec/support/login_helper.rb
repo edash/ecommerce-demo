@@ -6,9 +6,15 @@ module LoginHelper
     # Use css to find correct email address field input
     # because there are two email address fields on the page
     # and 'within' block doesn't work here
-    email_field = find(:css, "input[id$='email']")
+    # TODO - change to within block
+    visit "/index.php?controller=authentication"
+    email_field = find("#email")
     email_field.fill_in with: email
     fill_in "passwd", with: password
     click_button "Sign in"
+  end
+
+  def login_default_user
+    login("user@example.com", "password")
   end
 end
