@@ -7,8 +7,8 @@ module LoginHelper
     within "#login_form" do
       fill_in "Email address", with: email
       fill_in "Password", with: password
+      click_on "Sign in"
     end
-    click_on "Sign in"
   end
 
   def login_default_user
