@@ -39,18 +39,17 @@ feature "Purchase item" do
 
       expect(page).to have_content "Your order on My Store is complete."
 
-      # TODO expect assertion to check that correct item is in cart
+      # TODO: expect assertion to check that correct item is in cart
       # (can check amount is correct)
 
-      # TODO go to order page and check item is in order history as pending order
+      # TODO: go to order page and check item is in order history as pending order
       # use within #order-list
       # first class row (first_item)
-
     end
-    # TODO look at resizing - loses columns at mobile width!!
+    # TODO: look at resizing - loses columns at mobile width!!
   end
 
-  #TODO
+  # TODO
   context "Guest user" do
     xit "can purchase item by bank wire" do
     end

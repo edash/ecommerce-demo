@@ -13,7 +13,7 @@ feature "Edit cart" do
 
   context "edit cart from cart summary page" do
     xit "can increase item quantity" do
-      #Inside the table there's a link to increase the first item's quantity
+      # Inside the table there's a link to increase the first item's quantity
       # increase_link = find("#cart_summary > tbody > tr.first_item > td.cart_quantity > div.cart_quantity_button > a[href]",
       #                     visible: :all)
 
@@ -24,9 +24,8 @@ feature "Edit cart" do
       # cart_quantity_up btn btn-default button-plus
       # increase_link.click_link
 
-      binding.pry
-      #expect quantity to increase to 2
-
+      # binding.pry
+      # expect quantity to increase to 2
     end
 
     xit "can decrease item quantity"
