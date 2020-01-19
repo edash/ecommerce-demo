@@ -6,7 +6,7 @@ feature "Add item to cart" do
     visit "/index.php?id_product=1&controller=product"
   end
 
-  #TODO do I need context block?
+  # TODO: do I need context block?
   context "add item from item page" do
     it "with default quantity and size" do
       click_on "Add to cart"
