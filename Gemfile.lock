@@ -27,7 +27,6 @@ GEM
     faker (2.9.0)
       i18n (>= 1.6, < 1.8)
     ffi (1.11.3)
-    ffi (1.11.3-x64-mingw32)
     i18n (1.7.1)
       concurrent-ruby (~> 1.0)
     method_source (0.9.2)
@@ -45,7 +44,7 @@ GEM
       pry (~> 0.10)
     public_suffix (4.0.6)
     racc (1.6.2)
-    rack (2.2.3)
+    rack (2.2.23)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     regexp_parser (1.6.0)
@@ -78,7 +77,7 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
+  x64-mingw-ucrt
 
 DEPENDENCIES
   capybara (~> 3.13, >= 3.13.2)
